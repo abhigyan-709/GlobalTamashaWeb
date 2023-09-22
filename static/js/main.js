@@ -10,33 +10,28 @@
         }
     });
 
-    const themeButton = document.getElementById('theme-button')
-    const darkTheme = 'dark-theme'
-    const iconTheme = 'icofont-moon'
+    const themeButton = document.getElementById('theme-button');
+    const darkTheme = 'dark-theme';
+    const iconTheme = 'icofont-moon';
 
-    const selectedTheme = localStorage.getItem('selected-theme')
-    const selectedIcon = localStorage.getItem('selected-icon')
+    const selectedTheme = localStorage.getItem('selected-theme');
+    const selectedIcon = localStorage.getItem('selected-icon');
 
-
-    const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'light' : 'dark'
-    const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'brightness-low' : 'bx-moon'
-
+    const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'light' : 'dark';
+    const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'brightness-low' : 'bx-moon';
 
     if (selectedTheme) {
-        document.body.classList[selectedTheme === 'light' ? 'add' : 'remove'](darkTheme)
-        themeButton.classList[selectedIcon === 'brightness-low' ? 'add' : 'remove'](iconTheme)
-
+        document.body.classList[selectedTheme === 'light' ? 'add' : 'remove'](darkTheme);
+        themeButton.classList[selectedIcon === 'brightness-low' ? 'add' : 'remove'](iconTheme);
     }
 
     themeButton.addEventListener('click', () => {
-        document.body.classList.toggle(darkTheme)
-        themeButton.classList.toggle(iconTheme)
+        document.body.classList.toggle(darkTheme);
+        themeButton.classList.toggle(iconTheme);
 
-        localStorage.setItem('selected-theme', getCurrentTheme())
-        localStorage.setItem('selected-icon', getCurrentIcon())
-
-    })
-
+        localStorage.setItem('selected-theme', getCurrentTheme());
+        localStorage.setItem('selected-icon', getCurrentIcon());
+    });
 
     // Smooth scroll for the navigation menu and links with .scrollto classes
     var scrolltoOffset = $('#header').outerHeight() - 16;
@@ -48,7 +43,6 @@
             e.preventDefault();
             var target = $(this.hash);
             if (target.length) {
-
                 var scrollto = target.offset().top - scrolltoOffset;
 
                 if ($(this).attr("href") == '#header') {
@@ -83,10 +77,21 @@
         $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
         $('body').append('<div class="mobile-nav-overly"></div>');
 
-        $(document).on('click', '.mobile-nav-toggle', function(e) {
+        // Function to handle opening and closing mobile navigation
+        const toggleMobileNav = () => {
             $('body').toggleClass('mobile-nav-active');
             $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
             $('.mobile-nav-overly').toggle();
+        };
+
+        // Event listener for mobile navigation toggle button
+        $(document).on('click', '.mobile-nav-toggle', function(e) {
+            toggleMobileNav();
+        });
+
+        // Event listener for mobile navigation links
+        $(document).on('click', '.mobile-nav a', function(e) {
+            toggleMobileNav();
         });
 
         $(document).on('click', '.mobile-nav .drop-down > a', function(e) {
@@ -122,10 +127,3 @@
     });
 
 })(jQuery);
-
-$(function() {
-    $(document).scroll(function() {
-        var $nav = $(".navbur");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-    });
-});
