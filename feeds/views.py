@@ -17,3 +17,17 @@ def home_page(request):
     }
 
     return render(request, 'home_page.html', context)
+
+from django.shortcuts import render, redirect
+from .forms import ContactForm
+
+def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main_home')  # Replace 'success' with the URL where you want to redirect after successful submission
+    else:
+        form = ContactForm()
+    return render(request, 'contact_us.html', {'form': form})
+
