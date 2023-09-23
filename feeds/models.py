@@ -2,7 +2,7 @@ from django.db import models
 
 from django.db import models
 from ckeditor.fields import RichTextField
-
+from phonenumber_field.modelfields import PhoneNumberField
 
 class PersonalInformation(models.Model):
     name_complete = models.CharField(max_length=50, blank=True, null=True)
@@ -69,12 +69,11 @@ class Contact(models.Model):
 class ContactUs(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    mobile = models.TextField()
+    mobile = PhoneNumberField()
     message = models.TextField()
 
     def __str__(self):
         return self.name
-
 
 
 class Skills(models.Model):
@@ -83,3 +82,5 @@ class Skills(models.Model):
 
     def __str__(self):
         return self.skill
+
+
