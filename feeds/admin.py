@@ -14,9 +14,4 @@ admin.site.register(About)
 admin.site.register(Projects)
 admin.site.register(Skills)
 
-class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'mobile', 'message')
-    search_fields = ['name', 'email', 'message']
-    list_filter = ['name', 'email']
-
-admin.site.register(ContactUs, ContactUsAdmin)
+admin.site.register(ContactUs)

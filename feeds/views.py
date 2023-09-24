@@ -26,8 +26,12 @@ def contact_us(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('main_home')  # Replace 'success' with the URL where you want to redirect after successful submission
+            print("Form saved successfully!")
+            return redirect('main_home')
+        else:
+            print("Form is not valid:", form.errors)
     else:
         form = ContactForm()
     return render(request, 'contact_us.html', {'form': form})
+
 

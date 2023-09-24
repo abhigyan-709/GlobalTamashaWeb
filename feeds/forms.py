@@ -7,4 +7,5 @@ class ContactForm(forms.ModelForm):
         fields = ['name', 'email', 'mobile', 'message']
 
 
+
 #minor

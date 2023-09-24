@@ -69,7 +69,7 @@ class Contact(models.Model):
 class ContactUs(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    mobile = PhoneNumberField()
+    mobile = models.CharField(max_length=12, default=1234567890)
     message = models.TextField()
 
     def __str__(self):
